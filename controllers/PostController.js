@@ -21,7 +21,7 @@ export const getLastTags = async (req, res) => {
 export const getAll = async (req, res) => {
   try {
     const posts = await PostModel.find().populate("user").exec();
-    console.log(posts);
+
     res.json(posts);
   } catch (error) {
     console.log("Не удалось получить статьи", error);
@@ -58,7 +58,7 @@ export const getOne = async (req, res) => {
         }
         res.json(doc);
       }
-    );
+    ).populate("user");
   } catch (error) {
     console.log("Не удалось получить статью", error);
     res.status(500).json({
